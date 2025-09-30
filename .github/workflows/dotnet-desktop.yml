@@ -62,8 +62,8 @@ jobs:
     # 编译抽奖软件项目
     - name: Build Lottery Drawing App
       run: |
-        dotnet publish ./LotteryDrawing/LotteryDrawing/LotteryDrawing.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true -o ./publish/LotteryDrawing-win-x64
-        dotnet publish ./LotteryDrawing/LotteryDrawing/LotteryDrawing.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true -o ./publish/LotteryDrawing-win-x86
+        dotnet publish ./LotteryDrawing/LotteryDrawing/LotteryDrawing.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/LotteryDrawing-win-x64
+        dotnet publish ./LotteryDrawing/LotteryDrawing/LotteryDrawing.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/LotteryDrawing-win-x86
 
     # 上传编译成品
     - name: Upload Ink Canvas Artistry
