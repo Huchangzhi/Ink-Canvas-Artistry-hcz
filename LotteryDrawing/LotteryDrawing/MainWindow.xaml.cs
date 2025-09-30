@@ -19,22 +19,44 @@ namespace LotteryDrawing
             LoadNames();
         }
 
-        public int PeopleCount = 50; // 设置总人数为50
+        public int TotalCount = 1; // 抽取人数，默认为1
+        public int PeopleCount = 50; // 总人数，默认为50
         public List<string> Names = new List<string>();
+
+        private void BorderBtnAdd_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (TotalCount >= PeopleCount) return;
+            TotalCount++;
+            LabelNumberCount.Text = TotalCount.ToString();
+        }
+
+        private void BorderBtnMinus_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (TotalCount < 2) return;
+            TotalCount--;
+            LabelNumberCount.Text = TotalCount.ToString();
+        }
 
         private void BorderBtnRand_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            // 执行单次抽奖逻辑
             Random random = new Random();
             string outputString = "";
+            List<string> outputs = new List<string>();
+            List<int> rands = new List<int>();
 
             BorderBtnRandCover.Visibility = Visibility.Visible;
 
             new Thread(new ThreadStart(() => {
                 // 抽奖动画效果
-                for (int i = 0; i < 15; i++) // 增加动画效果的循环次数
+                for (int i = 0; i < 5; i++)
                 {
                     int rand = random.Next(1, PeopleCount + 1);
+                    while (rands.Contains(rand))
+                    {
+                        rand = random.Next(1, PeopleCount + 1);
+                    }
+                    rands.Add(rand);
+                    if (rands.Count >= PeopleCount) rands = new List<int>();
                     Application.Current.Dispatcher.Invoke(() => {
                         if (Names.Count != 0)
                         {
@@ -46,21 +68,33 @@ namespace LotteryDrawing
                         }
                     });
 
-                    Thread.Sleep(80); // 调整动画速度
+                    Thread.Sleep(150);
                 }
 
-                // 最终结果
-                int finalRand = random.Next(1, PeopleCount + 1);
+                rands = new List<int>();
                 Application.Current.Dispatcher.Invoke(() => {
-                    if (Names.Count != 0)
+                    for (int i = 0; i < TotalCount; i++)
                     {
-                        outputString = Names[finalRand - 1];
+                        int rand = random.Next(1, PeopleCount + 1);
+                        while (rands.Contains(rand))
+                        {
+                            rand = random.Next(1, PeopleCount + 1);
+                        }
+                        rands.Add(rand);
+                        if (rands.Count >= PeopleCount) rands = new List<int>();
+
+                        if (Names.Count != 0)
+                        {
+                            outputs.Add(Names[rand - 1]);
+                            outputString += Names[rand - 1] + Environment.NewLine;
+                        }
+                        else
+                        {
+                            outputs.Add(rand.ToString());
+                            outputString += rand.ToString() + Environment.NewLine;
+                        }
                     }
-                    else
-                    {
-                        outputString = finalRand.ToString();
-                    }
-                    LabelOutput.Content = outputString;
+                    LabelOutput.Content = outputString.ToString().Trim();
                     BorderBtnRandCover.Visibility = Visibility.Collapsed;
                 });
             })).Start();
@@ -71,9 +105,20 @@ namespace LotteryDrawing
             // 按钮按下效果，可选实现
         }
 
+        private void BorderBtnMinus_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // 按钮按下效果
+        }
+
+        private void BorderBtnAdd_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // 按钮按下效果
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadNames();
+            LabelNumberCount.Text = TotalCount.ToString();
         }
 
         private void BorderBtnHelp_MouseUp(object sender, MouseButtonEventArgs e)
@@ -82,6 +127,7 @@ namespace LotteryDrawing
             NamesInputWindow namesInputWindow = new NamesInputWindow(this);
             namesInputWindow.ShowDialog();
             LoadNames(); // 重新加载名单
+            LabelNumberCount.Text = TotalCount.ToString(); // 重新设置抽取人数显示
         }
 
         public void LoadNames()
@@ -111,11 +157,23 @@ namespace LotteryDrawing
                 {
                     TextBlockPeopleCount.Text = $"共{PeopleCount}人";
                 }
+                
+                // 重置抽取人数，确保不超过总人数
+                if (TotalCount > PeopleCount)
+                {
+                    TotalCount = 1;
+                }
             }
             else
             {
                 PeopleCount = 50; // 如果没有名单文件，则使用默认人数
                 TextBlockPeopleCount.Text = "点击此处以导入名单";
+            }
+            
+            // 更新抽取人数显示
+            if (LabelNumberCount != null)
+            {
+                LabelNumberCount.Text = TotalCount.ToString();
             }
         }
 
