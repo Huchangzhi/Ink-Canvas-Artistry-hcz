@@ -1,0 +1,101 @@
+<Window x:Class="LotteryDrawing.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LotteryDrawing"
+        Title="抽奖软件 - 单次抽奖"
+        Width="900"
+        Height="500"
+        Topmost="True"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
+    <Border Margin="10"
+            Background="White"
+            BorderBrush="Gray"
+            BorderThickness="1"
+            CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.8*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Viewbox Margin="20,0" HorizontalAlignment="Center">
+                <StackPanel MinHeight="470" Orientation="Horizontal" Spacing="50">
+                    <Label x:Name="LabelOutput"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Content=""
+                           FontSize="70"
+                           Foreground="Black" />
+                </StackPanel>
+            </Viewbox>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Spacing="40">
+                <Grid>
+                    <Border x:Name="BorderBtnRand"
+                            Width="200"
+                            Height="70"
+                            Background="#0066BF"
+                            CornerRadius="10"
+                            MouseUp="BorderBtnRand_MouseUp"
+                            MouseDown="BorderBtnRand_MouseDown">
+                        <StackPanel Margin="3,0" HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10">
+                            <TextBlock FontSize="35"
+                                       Foreground="White"
+                                       Text="开始抽奖" />
+                        </StackPanel>
+                    </Border>
+                    <Border x:Name="BorderBtnRandCover"
+                            Width="200"
+                            Height="70"
+                            Background="#BFBFBF"
+                            CornerRadius="10"
+                            Visibility="Collapsed">
+                        <StackPanel Margin="3,0" HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10">
+                            <TextBlock FontSize="35"
+                                       Foreground="White"
+                                       Text="开始抽奖" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+            <Border x:Name="BorderBtnHelp"
+                    Grid.Column="1"
+                    Height="40"
+                    Margin="10,10,60,10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Background="LightGray"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    CornerRadius="20"
+                    MouseUp="BorderBtnHelp_MouseUp">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock x:Name="TextBlockPeopleCount"
+                               Margin="15,12,15,12"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               Foreground="Black"
+                               Text="点击此处以导入名单" />
+                </StackPanel>
+            </Border>
+            <Border x:Name="BtnClose" Grid.Column="1"
+                Width="40"
+                Height="40"
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Background="#E32A34"
+                CornerRadius="100"
+                MouseUp="BtnClose_MouseUp">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    Foreground="White"
+                    Text="×" />
+            </Border>
+        </Grid>
+    </Border>
+</Window>

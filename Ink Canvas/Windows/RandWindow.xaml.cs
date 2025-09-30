@@ -69,7 +69,7 @@ namespace Ink_Canvas {
         public bool isNotRepeatName = false;
 
         public int TotalCount = 1;
-        public int PeopleCount = 60;
+        public int PeopleCount = 50;
         public List<string> Names = new List<string>();
 
         private void BorderBtnAdd_MouseUp(object sender, MouseButtonEventArgs e) {
@@ -204,7 +204,7 @@ namespace Ink_Canvas {
                 PeopleCount = Names.Count();
                 TextBlockPeopleCount.Text = PeopleCount.ToString();
                 if (PeopleCount == 0) {
-                    PeopleCount = 60;
+                    PeopleCount = 50;
                     TextBlockPeopleCount.Text = "点击此处以导入名单";
                 }
             }
