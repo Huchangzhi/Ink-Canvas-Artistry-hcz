@@ -415,12 +415,7 @@ namespace Ink_Canvas
             new OperatingGuideWindow().Show();
         }
 
-        private void SymbolIconRand_Click(object sender, RoutedEventArgs e)
-        {
-            AnimationsHelper.HideWithSlideAndFade(BorderTools);
-            AnimationsHelper.HideWithSlideAndFade(BoardBorderTools);
-            new RandWindow().Show();
-        }
+
 
         private void SymbolIconRandOne_Click(object sender, RoutedEventArgs e)
         {

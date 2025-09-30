@@ -37,43 +37,62 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.3.1
 
-    # 编译整个项目
-    - name: Build the solution
+    # 编译 Ink Canvas 项目
+    - name: Build Ink Canvas solution
       run: |
         msbuild -t:restore /p:GitFlow="Github Action"
         msbuild -target:"Ink Canvas" /p:Configuration=Release /p:Platform="Any CPU" /p:GitFlow="Github Action"
       env:
         Configuration: ${{ matrix.configuration }}
 
-    - name: Build the solution (x64)
+    - name: Build Ink Canvas solution (x64)
       run: |
         msbuild -t:restore /p:GitFlow="Github Action"
         msbuild -target:"Ink Canvas" /p:Configuration=Release /p:Platform="x64" /p:GitFlow="Github Action"
       env:
         Configuration: ${{ matrix.configuration }}
 
-    - name: Build the solution (ARM64)
+    - name: Build Ink Canvas solution (ARM64)
       run: |
         msbuild -t:restore /p:GitFlow="Github Action"
         msbuild -target:"Ink Canvas" /p:Configuration=Release /p:Platform="ARM64" /p:GitFlow="Github Action"
       env:
         Configuration: ${{ matrix.configuration }}
-        
+
+    # 编译抽奖软件项目
+    - name: Build Lottery Drawing App
+      run: |
+        dotnet publish ./LotteryDrawing/LotteryDrawing/LotteryDrawing.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/LotteryDrawing-win-x64
+        dotnet publish ./LotteryDrawing/LotteryDrawing/LotteryDrawing.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -o ./publish/LotteryDrawing-win-x86
+
     # 上传编译成品
-    - name: Upload to artifact
+    - name: Upload Ink Canvas Artistry
       uses: actions/upload-artifact@main
       with:
         name: Ink Canvas Artistry
         path: Ink Canvas/bin/Release
         
-    - name: Upload to artifact (x64)
+    - name: Upload Ink Canvas Artistry (x64)
       uses: actions/upload-artifact@main
       with:
         name: Ink Canvas Artistry (x64)
         path: Ink Canvas/bin/x64/Release
         
-    - name: Upload to artifact (ARM64)
+    - name: Upload Ink Canvas Artistry (ARM64)
       uses: actions/upload-artifact@main
       with:
         name: Ink Canvas Artistry (ARM64)
         path: Ink Canvas/bin/ARM64/Release
+
+    # 上传抽奖软件
+    - name: Upload Lottery Drawing App
+      uses: actions/upload-artifact@main
+      with:
+        name: Lottery Drawing App
+        path: publish/LotteryDrawing-win-x64
+
+    - name: Upload Lottery Drawing App (x86)
+      uses: actions/upload-artifact@main
+      with:
+        name: Lottery Drawing App (x86)
+        path: publish/LotteryDrawing-win-x86

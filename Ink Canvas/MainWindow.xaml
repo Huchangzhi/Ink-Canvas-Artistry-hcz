@@ -6688,30 +6688,7 @@
                                                             Foreground="{DynamicResource FloatBarForeground}" />
                                                     </ikw:SimpleStackPanel>
                                                 </Button>
-                                                <Button
-                                                    Width="45"
-                                                    Height="45"
-                                                    Padding="0"
-                                                    BorderThickness="0"
-                                                    Click="SymbolIconRand_Click">
-                                                    <ikw:SimpleStackPanel
-                                                        Width="40"
-                                                        Height="40"
-                                                        Orientation="Vertical">
-                                                        <ui:FontIcon
-                                                            Width="22"
-                                                            Height="22"
-                                                            Margin="0,4,0,1"
-                                                            FontFamily="{StaticResource FluentIconFontFamily}"
-                                                            Foreground="{DynamicResource FloatBarForeground}"
-                                                            Glyph="&#xe8b1;" />
-                                                        <Label
-                                                            HorizontalAlignment="Center"
-                                                            Content="随机抽选"
-                                                            FontSize="10"
-                                                            Foreground="{DynamicResource FloatBarForeground}" />
-                                                    </ikw:SimpleStackPanel>
-                                                </Button>
+
                                                 <Button
                                                     Width="45"
                                                     Height="45"
