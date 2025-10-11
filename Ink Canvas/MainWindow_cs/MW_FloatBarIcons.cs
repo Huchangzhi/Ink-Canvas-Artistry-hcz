@@ -115,8 +115,6 @@ namespace Ink_Canvas
             pos = e.GetPosition(null);
             downPos = e.GetPosition(null);
             GridForFloatingBarDraging.Visibility = Visibility.Visible;
-            SymbolIconEmoji1.Width = 0;
-            SymbolIconEmoji2.Width = 28;
         }
 
         void SymbolIconEmoji_MouseUp(object sender, MouseButtonEventArgs e)
@@ -138,8 +136,6 @@ namespace Ink_Canvas
             }
 
             GridForFloatingBarDraging.Visibility = Visibility.Collapsed;
-            SymbolIconEmoji1.Width = 28;
-            SymbolIconEmoji2.Width = 0;
         }
 
         #endregion

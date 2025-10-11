@@ -147,6 +147,7 @@
 		<Resource Include="Resources\Icons-png\Desmos.png" />
 		<Resource Include="Resources\Icons-png\EasiCamera.png" />
 		<Resource Include="Resources\Icons-png\penUpright.png" />
+     	<Resource Include="Resources\Ink Canvas Artistry.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

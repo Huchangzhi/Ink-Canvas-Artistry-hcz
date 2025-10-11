@@ -5373,25 +5373,13 @@
                     CornerRadius="5"
                     MouseDown="SymbolIconEmoji_MouseDown"
                     MouseUp="SymbolIconEmoji_MouseUp">
-                    <ikw:SimpleStackPanel
-                        Margin="0,5,0,5"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
-                        <ui:FontIcon
-                            Name="SymbolIconEmoji1"
-                            Width="28"
-                            Height="22"
-                            FontFamily="{StaticResource FluentIconFontFamily}"
-                            Foreground="{DynamicResource FloatBarForeground}"
-                            Glyph="&#xe76e;" />
-                        <ui:FontIcon
-                            Name="SymbolIconEmoji2"
-                            Width="0"
-                            Height="22"
-                            FontFamily="{StaticResource FluentIconFontFamily}"
-                            Foreground="{DynamicResource FloatBarForeground}"
-                            Glyph="&#xe899;" />
-                    </ikw:SimpleStackPanel>
+                    <Image
+                        Name="SymbolIconEmoji1"
+                        Width="28"
+                        Height="28"
+                        Opacity="0.6"
+                        RenderOptions.BitmapScalingMode="HighQuality"
+                        Source="/Resources/Ink Canvas Artistry.png" />
                 </Border>
                 <Border
                     Name="BorderFloatingBarMainControls"
